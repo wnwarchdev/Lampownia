@@ -2,7 +2,7 @@ export const initialState = {
   products: {
     data: [
       {
-        _id: '1',
+        id: '1',
         name: 'Vostok',
         price: 500,
         category: 'ceiling',
@@ -10,7 +10,7 @@ export const initialState = {
         description: 'Elegant teardrop pendants with a hand blown opaline glass shade and original Bakelite cover and short stem hook stanchions. The glass provides a nice even distribution of light when illuminated, making these lights ideal for circulation areas within the home.',
       },
       {
-        _id: '2',
+        id: '2',
         name: 'Kristall',
         price: 700,
         category: 'ceiling',
