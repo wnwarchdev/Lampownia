@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
-import styles from './Header.module.scss';
+import styles from './Homepage.module.scss';
 
-const Component = ({children}) => (
+const Component = ({className, children}) => (
   <div className={styles.root}>
-    <h2>Header</h2>
+    <h2>Homepage</h2>
     {children}
   </div>
 );
@@ -29,7 +29,7 @@ Component.propTypes = {
 // const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as Header,
-  // Container as Header,
-  Component as HeaderComponent,
+  Component as Homepage,
+  // Container as Homepage,
+  Component as HomepageComponent,
 };
