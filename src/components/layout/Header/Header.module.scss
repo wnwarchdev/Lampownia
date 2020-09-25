@@ -1,4 +1,17 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.logo{
+    font-weight: 700;
+}
+
+.link{
+    border: 2px solid black;
+    margin: 0 3px;
+}
+
