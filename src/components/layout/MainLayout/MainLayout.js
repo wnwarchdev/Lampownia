@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Container from '@material-ui/core/Container';
 
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
@@ -9,9 +12,18 @@ import { Header } from '../Header/Header';
 
 const Component = ({className, children}) => (
   <div className={styles.root}>
-    <Header />
-    <h2>MainLayout</h2>
-    {children}
+    <AppBar>
+      <Container maxWidth="lg">
+        <Toolbar disableGutters>
+          <Header/>
+        </Toolbar>
+      </Container>
+    </AppBar>
+
+    <Container maxWidth="lg">
+      <Toolbar/>
+      {children}
+    </Container>
   </div>
 );
 
