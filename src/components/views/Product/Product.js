@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { getAll } from '../../../redux/productsRedux';
+import { addToCart } from '../../../redux/cartRedux';
 
 import styles from './Product.module.scss';
 
@@ -13,12 +14,27 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import MenuItem from '@material-ui/core/MenuItem';
 
 
-const Component = ({products, match}) => {
+const Component = ({products, match, addToCart}) => {
   const product = products.filter(product => product.id === match.params.id)[0];
-  console.log(product);
-  console.log(product.image);
+
+  const [value, setValue] = React.useState(1);
+  const onChange = ({ target }) => {
+    setValue(target.value);
+  };
+
+  const sendToCart = (product, value) => {
+    addToCart(product, value);
+    // console.log ('product: ', product);
+    // console.log ('value: ', value);
+    // console.log ('value: ', value);
+  };
+
+
   return(
     <div className={styles.root}>
       <Paper >
@@ -38,7 +54,18 @@ const Component = ({products, match}) => {
             </CardContent>
           </CardActionArea>
           <CardActions>
-            <Button>
+            <FormControl>
+              <Select value={value} onChange={onChange}>
+                <MenuItem value={1}>1</MenuItem>
+                <MenuItem value={2}>2</MenuItem>
+                <MenuItem value={3}>3</MenuItem>
+              </Select>
+            </FormControl>
+            
+            <Button 
+              size="small" 
+              color="primary"
+              onClick={() => sendToCart( product, value )}>
              ADD TO CART
             </Button>
           </CardActions>
@@ -51,17 +78,18 @@ const Component = ({products, match}) => {
 Component.propTypes = {
   products: PropTypes.array,
   match: PropTypes.object,
+  addToCart: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
   products: getAll(state),
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => ({
+  addToCart: (productInformation, value) => dispatch(addToCart(productInformation, value)),
+});
 
-const Container = connect(mapStateToProps)(Component);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
   Container as Product,
