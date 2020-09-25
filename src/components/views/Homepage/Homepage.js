@@ -1,35 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import { Item } from '../../common/Item/Item';
+
+import { connect } from 'react-redux';
+import { getAll } from '../../../redux/productsRedux';
 
 import styles from './Homepage.module.scss';
 
-const Component = ({className, children}) => (
-  <div className={styles.root}>
-    <h2>Homepage</h2>
-    {children}
-  </div>
-);
+
+class Component extends React.Component {
+
+  render() {
+    const { products } = this.props;
+    return (
+      <section className={styles.root}>
+        {products.map(product => <Item key={product._id} product={product}  />)}
+      </section>
+    );
+  }
+}
 
 Component.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
+  products: PropTypes.array,
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+const mapStateToProps = state => ({
+  products: getAll(state),
+});
 
 // const mapDispatchToProps = dispatch => ({
 //   someAction: arg => dispatch(reduxActionCreator(arg)),
 // });
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps)(Component);
 
 export {
-  Component as Homepage,
-  // Container as Homepage,
+  //Component as Homepage,
+  Container as Homepage,
   Component as HomepageComponent,
 };

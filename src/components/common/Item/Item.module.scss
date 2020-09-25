@@ -1,0 +1,30 @@
+@import '../../../styles/settings.scss';
+
+.root {
+    text-decoration: none;
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+}
+
+p {
+    text-align:left;    
+}
+
+.card {
+
+    margin: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column ;
+    background-color: rgb(255, 230, 0);
+    box-shadow: 1px 1px 5px black;
+    width: 300px;
+    
+}
+
+.image {
+    width: 250px;
+    object-fit: cover
+}
+
