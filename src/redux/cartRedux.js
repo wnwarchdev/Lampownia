@@ -59,7 +59,10 @@ export const reducer = (statePart = [], action = {}) => {
 
 
     case CLEAR_CART: {
-      return statePart;
+      return {
+        ...statePart,
+        data: statePart.data.filter((product) => product._id !== action.payload),
+      };
     }
 
 
