@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
-import { getAll } from '../../../redux/productsRedux';
+import { getProduct, fetchSingleProduct } from '../../../redux/productsRedux';
 import { addToCart } from '../../../redux/cartRedux';
 
 import styles from './Product.module.scss';
@@ -19,73 +19,99 @@ import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 
 
-const Component = ({products, match, addToCart}) => {
-  const product = products.filter(product => product.id === match.params.id)[0];
+class Component extends React.Component {
+  state = {
+    data: {
+      value: 1,
+    },
+  }
 
-  const [value, setValue] = React.useState(1);
-  const onChange = ({ target }) => {
-    setValue(target.value);
-  };
+  async componentDidMount(){
+    const {fetchSingleProduct} = this.props;
+    const id = this.props.match.params.id;
+    console.log(id);
+    await fetchSingleProduct(id);
+  }
 
-  const sendToCart = (product, value) => {
-    addToCart(product, value);
-    // console.log ('product: ', product);
-    // console.log ('value: ', value);
-    // console.log ('value: ', value);
-  };
+  render(){
+    const {getSingleProduct, addToCart} = this.props;
+    const {value} = this.state.data;
+    const singleProduct = getSingleProduct[0];
+
+    const onChange = ( event ) => {
+      event.preventDefault();
+      const { data } = this.state;
+      this.setState({
+        data: {...data, value: event.target.value,
+        }});
+    };
+
+    const sendToCart = (singleProduct, value) => {
+      addToCart(singleProduct, value);
+    };
+
+    return(
+      <div>
+        <Paper>
+          <Card>
+            <CardActionArea>
+              <img src={`/img/Products/${singleProduct.image}`} alt={`IMG of ${singleProduct.name}`} className={styles.image}/>
+              <CardContent>
+                <Typography component="h1">
+                  {singleProduct.name}
+                </Typography>
+                <Typography color="textSecondary" component="p">
+                  {`${singleProduct.category} lamp`}
+                </Typography>
+                <Typography color="textSecondary" component="p">
+                  {`${singleProduct.description}`}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+            <CardActions>
+              <FormControl>
+                <Select value={value} onChange={onChange}>
+                  <MenuItem value={1}>1</MenuItem>
+                  <MenuItem value={2}>2</MenuItem>
+                  <MenuItem value={3}>3</MenuItem>
+                </Select>
+              </FormControl>
+              
+              <Button 
+                size="small" 
+                color="primary"
+                onClick={() => sendToCart( singleProduct, value )}>
+                ADD TO CART
+              </Button>
+            </CardActions>
+          </Card>
+        </Paper>
+      </div>
+    );
+  }
+}
 
 
-  return(
-    <div className={styles.root}>
-      <Paper >
-        <Card>
-          <CardActionArea>
-            <img src={`/img/Products/${product.image}`} alt={`IMG of ${product.name}`} className={styles.image}/>
-            <CardContent>
-              <Typography component="h1">
-                {product.name}
-              </Typography>
-              <Typography color="textSecondary" component="p">
-                {`${product.category} lamp`}
-              </Typography>
-              <Typography color="textSecondary" component="p">
-                {`${product.description}`}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-            <FormControl>
-              <Select value={value} onChange={onChange}>
-                <MenuItem value={1}>1</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
-              </Select>
-            </FormControl>
-            
-            <Button 
-              size="small" 
-              color="primary"
-              onClick={() => sendToCart( product, value )}>
-             ADD TO CART
-            </Button>
-          </CardActions>
-        </Card>
-      </Paper>
-    </div>
-  );
-};
+
+
+
 
 Component.propTypes = {
   products: PropTypes.array,
   match: PropTypes.object,
   addToCart: PropTypes.func,
+  product: PropTypes.any,
+  fetchItem: PropTypes.func,
+  fetchSingleProduct: PropTypes.func,
+  getSingleProduct: PropTypes.any,
 };
 
-const mapStateToProps = state => ({
-  products: getAll(state),
+const mapStateToProps = (state, id) => ({
+  getSingleProduct: getProduct(state, id),
 });
 
 const mapDispatchToProps = dispatch => ({
+  fetchSingleProduct: (id) => dispatch(fetchSingleProduct(id)),
   addToCart: (productInformation, value) => dispatch(addToCart(productInformation, value)),
 });
 

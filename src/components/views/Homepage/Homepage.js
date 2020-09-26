@@ -14,6 +14,7 @@ class Component extends React.Component {
   async componentDidMount(){
     const {fetchProducts} = this.props;
     await fetchProducts();
+    await this.props.products;
   }
 
   render() {

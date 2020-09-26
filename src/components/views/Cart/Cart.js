@@ -20,8 +20,8 @@ import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 
 
-function createData(name, price, quantity, total, id) {
-  return { name, price, quantity, total, id };
+function createData(name, price, quantity, total, _id) {
+  return { name, price, quantity, total, _id };
 }
 
 
@@ -36,15 +36,15 @@ class Component extends React.Component {
       product.value,
       product.value
         ?
-        product.price*product.value:product.price*0, product.id)) : [];
+        product.price*product.value:product.price*0, product._id)) : [];
   
-    const changeInput = (event, id) => {
+    const changeInput = (event, _id) => {
       event.preventDefault();
-      changeValue({id, value: parseInt(event.target.value)});
+      changeValue({_id, value: parseInt(event.target.value)});
     };
 
-    const removeProduct = (id) => {
-      clearCart(id);
+    const removeProduct = (_id) => {
+      clearCart(_id);
     };
   
     const totalPrice = () => {
@@ -83,7 +83,7 @@ class Component extends React.Component {
 
                     <TableCell>
                       <FormControl>
-                        <Select value={row.quantity} onChange={e => changeInput(e, row.id)}>
+                        <Select value={row.quantity} onChange={e => changeInput(e, row._id)}>
                           <MenuItem value={1}>1</MenuItem>
                           <MenuItem value={2}>2</MenuItem>
                           <MenuItem value={3}>3</MenuItem>
@@ -94,7 +94,7 @@ class Component extends React.Component {
                     <TableCell>{row.total}</TableCell>
 
                     <TableCell>
-                      <Button onClick={() => removeProduct(row.id)}>REMOVE</Button>
+                      <Button onClick={() => removeProduct(row._id)}>REMOVE</Button>
                     </TableCell>
 
                   </TableRow>
@@ -133,8 +133,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  changeValue: ({id, value}) => dispatch(changeValue({id, value})),
-  clearCart: (id) => dispatch(clearCart(id)),
+  changeValue: ({_id, value}) => dispatch(changeValue({_id, value})),
+  clearCart: (_id) => dispatch(clearCart(_id)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
