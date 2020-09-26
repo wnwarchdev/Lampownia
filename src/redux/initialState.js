@@ -1,5 +1,6 @@
 export const initialState = {
   products: {
+    singleProduct: {},
     data: [
       // {
       //   id: '1',

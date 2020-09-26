@@ -10,9 +10,9 @@ import styles from './Item.module.scss';
 //import { getAll } from '../../../redux/postsRedux';
 
 const Component = ({ product }) => {
-  const { image, name, price, id } = product;
+  const { image, name, price, _id } = product;
   return (
-    <Link to={`${process.env.PUBLIC_URL}/products/${id}`} className={styles.root}>
+    <Link to={`${process.env.PUBLIC_URL}/products/${_id}`} className={styles.root}>
       <Card className={styles.card}>
         <img src={`/img/Products/${image}`} alt={`IMG of ${name}`} className={styles.image} />
         <h2>{name}</h2>
@@ -25,7 +25,7 @@ const Component = ({ product }) => {
 
 Component.propTypes = {
   name: PropTypes.string,
-  id: PropTypes.any,
+  _id: PropTypes.any,
   product: PropTypes.object,
 };
 

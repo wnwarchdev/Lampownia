@@ -25,7 +25,7 @@ export const reducer = (statePart = [], action = {}) => {
       if(products){
         let CartChecker = false;
         for (const product of products) {
-          if (product.id === action.payload.id) CartChecker = true;
+          if (product._id === action.payload._id) CartChecker = true;
         }
         return {
           ...statePart,
@@ -47,7 +47,7 @@ export const reducer = (statePart = [], action = {}) => {
       return {
         ...statePart,
         products: statePart.products.map((product) => {
-          if (product.id === action.payload.id)
+          if (product._id === action.payload._id)
             return {
               ...product,
               value: action.payload.value,
