@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { getAll } from '../../../redux/productsRedux';
-import { getCart, changeValue } from '../../../redux/cartRedux';
+import { getCart, changeValue, clearCart } from '../../../redux/cartRedux';
 
 //import styles from './Cart.module.scss';
 
@@ -28,7 +28,7 @@ function createData(name, price, quantity, total, id) {
 class Component extends React.Component {
 
   render(){
-    const { cartItems, changeValue} = this.props;
+    const { cartItems, changeValue, clearCart} = this.props;
   
     const rows = cartItems ? cartItems.map(product => createData(
       product.name,
@@ -41,6 +41,10 @@ class Component extends React.Component {
     const changeInput = (event, id) => {
       event.preventDefault();
       changeValue({id, value: parseInt(event.target.value)});
+    };
+
+    const removeProduct = (id) => {
+      clearCart(id);
     };
   
     const totalPrice = () => {
@@ -56,21 +60,27 @@ class Component extends React.Component {
           <h2>Cart</h2>
           <TableContainer component={Paper}>
             <Table>
+
               <TableHead>
                 <TableRow>
                   <TableCell>Product</TableCell>
                   <TableCell>Price</TableCell>
                   <TableCell>Qty</TableCell>
                   <TableCell>Total</TableCell>
+                  <TableCell>Remove</TableCell>
                 </TableRow>
               </TableHead>
+
               <TableBody>
                 {rows.map((row) => (
                   <TableRow key={row.name}>
+
                     <TableCell component="th" scope="row">
                       {row.name}
                     </TableCell>
+
                     <TableCell>{row.price}</TableCell>
+
                     <TableCell>
                       <FormControl>
                         <Select value={row.quantity} onChange={e => changeInput(e, row.id)}>
@@ -79,9 +89,14 @@ class Component extends React.Component {
                           <MenuItem value={3}>3</MenuItem>
                         </Select>
                       </FormControl>
-
                     </TableCell>
+
                     <TableCell>{row.total}</TableCell>
+
+                    <TableCell>
+                      <Button onClick={() => removeProduct(row.id)}>REMOVE</Button>
+                    </TableCell>
+
                   </TableRow>
                 ))}
                 <TableRow key="total">
@@ -109,6 +124,7 @@ class Component extends React.Component {
 Component.propTypes = {
   cartItems: PropTypes.array,
   changeValue: PropTypes.func,
+  clearCart: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -117,7 +133,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  changeValue: ({id, value}) => dispatch(changeValue({id, value})), 
+  changeValue: ({id, value}) => dispatch(changeValue({id, value})),
+  clearCart: (id) => dispatch(clearCart(id)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

@@ -8,14 +8,18 @@ const createActionName = name => `app/${reducerName}/${name}`;
 /* action types */
 const ADD_TO_CART = createActionName('ADD_TO_CART');
 const CHANGE_VALUE = createActionName('CHANGE_VALUE');
+const CLEAR_CART = createActionName('CLEAR_CART');
 
 /* action creators */
 export const addToCart = (payload, value) => ({ payload, value, type: ADD_TO_CART });
 export const changeValue = (payload) => ({ payload, type: CHANGE_VALUE });
+export const clearCart = (payload) => ({ payload, type: CLEAR_CART });
 
 /* reducer */
 export const reducer = (statePart = [], action = {}) => {
   switch (action.type) {
+
+
     case ADD_TO_CART: {
       const { products } = statePart;
       if(products){
@@ -37,6 +41,8 @@ export const reducer = (statePart = [], action = {}) => {
         products: [{ ...action.payload, value: action.value}],
       };
     }
+
+
     case CHANGE_VALUE: {
       return {
         ...statePart,
@@ -50,6 +56,13 @@ export const reducer = (statePart = [], action = {}) => {
         }),
       };
     }
+
+
+    case CLEAR_CART: {
+      return statePart;
+    }
+
+
     default:
       return statePart;
   }
