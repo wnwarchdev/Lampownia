@@ -31,8 +31,8 @@ app.use('*', (req, res) => {
 });
 
 /* MONGOOSE */
-//const dbURI = process.env.NODE_ENV === `production` ? `mongodb+srv://wnw:<password>@cluster0.cfcxb.mongodb.net/<dbname>?retryWrites=true&w=majority` : `mongodb://localhost:27017/lampownia`;
-mongoose.connect(`mongodb://localhost:27017/lampownia`, { useNewUrlParser: true, useUnifiedTopology: true });
+const dbURI = process.env.NODE_ENV === `production` ? `mongodb+srv://wnw:kodilla1@cluster0.cfcxb.mongodb.net/lampownia?retryWrites=true&w=majority` : `mongodb://localhost:27017/lampownia`;
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.once('open', () => {
   console.log('Successfully connected to the db');
