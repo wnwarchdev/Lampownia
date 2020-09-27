@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "set NODE_ENV=production && run-p start:* ",
+    "start": "run-p start:* ",
     "start:server": "nodemon backend/server.js",
     "start-silent": "run-p start > /dev/null",
     "start:react": "react-scripts start",
