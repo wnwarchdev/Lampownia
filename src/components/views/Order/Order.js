@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { getAll } from '../../../redux/productsRedux';
-import { getCart} from '../../../redux/cartRedux';
+import { getCart, sendOrder} from '../../../redux/cartRedux';
 
 //import styles from './Order.module.scss';
 import Grid from '@material-ui/core/Grid';
@@ -16,6 +16,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableContainer from '@material-ui/core/TableContainer';
+import { Redirect } from 'react-router';
 
 function createData(name, price, value, total, id) {
   return { name, price, value, total, id };
@@ -41,10 +42,22 @@ class Component extends React.Component {
     this.setState({ order: { ...order, [name]: event.target.value } });
   };
 
+  executeOrder = async () => {
+    const { order } = this.state;
+    const { sendOrder, productsInCart } = this.props;
+    productsInCart ? 
+      ((order.name && order.surname && order.email && order.adress && order.city && order.postcode) ? 
+        await sendOrder({ order, productsInCart } 
+        ) 
+        : alert('Add more data')
+      ) 
+      : alert('Nothing to order');
+  };
+
   render() {
 
     const { productsInCart} = this.props;
-    const { changeInput } = this;
+    const { changeInput, executeOrder } = this;
     const { order } = this.state;
 
     const rows = productsInCart ? productsInCart.map(product => createData(
@@ -197,13 +210,14 @@ class Component extends React.Component {
 
           <div>
             <Button>BACK</Button>
-            <Button>ORDER</Button>
+            <Button onClick={() => {executeOrder(order, productsInCart); alert('ok!'); } } >ORDER</Button>
           </div>
 
         </div>
       ) : (
         <div>
-          <h3>NOTHING TO ORDER</h3>
+          <Redirect to={`${process.env.PUBLIC_URL}/`}/>
+          {/* {alert('Please choose items first...')} */}
         </div>
       )
     );
@@ -212,6 +226,7 @@ class Component extends React.Component {
 
 Component.propTypes = {
   productsInCart: PropTypes.array,
+  sendOrder: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -220,6 +235,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  sendOrder: ({ order, productsInCart }) => dispatch(sendOrder({ order, productsInCart })),
 });
 
 const Container = (connect(mapStateToProps, mapDispatchToProps)(Component));

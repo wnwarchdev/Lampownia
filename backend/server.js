@@ -7,6 +7,7 @@ const MongoStore = require('connect-mongo')(session);
 
 
 const router = require('./routes/products.routes');
+const orderRouter = require('./routes/order.routes');
 const app = express();
 
 
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 
 /* API ENDPOINTS */
 app.use('/api', router);
+app.use('/api', orderRouter);
 
 
 /* API ERROR PAGES */

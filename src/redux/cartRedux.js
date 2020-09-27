@@ -1,3 +1,6 @@
+import Axios from 'axios';
+import { api } from '../settings';
+
 /* selectors */
 export const getCart = ({cart}) => cart.data;
 
@@ -12,6 +15,7 @@ const CLEAR_CART = createActionName('CLEAR_CART');
 const FETCH_START = createActionName('FETCH_START');
 const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
 const FETCH_ERROR = createActionName('FETCH_ERROR');
+const ADD_ORDER = createActionName('ADD_ORDER');
 
 /* action creators */
 export const addToCart = (payload, value) => ({ payload, value, type: ADD_TO_CART });
@@ -20,6 +24,7 @@ export const clearCart = (payload) => ({ payload, type: CLEAR_CART });
 export const fetchStarted = payload => ({ payload, type: FETCH_START });
 export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = payload => ({ payload, type: FETCH_ERROR });
+export const addOrder = (payload) => ({ payload, type: ADD_ORDER });
 
 /* thunks */
 export const cartToLocal = (cart) => () => {
@@ -38,6 +43,22 @@ export const addCartToLocal = (cart, value) => () => {
   const newArr = arr.filter(a => a._id !== createObject._id);
   newArr.push(createObject);
   localStorage.setItem(`cart`, JSON.stringify(newArr));
+};
+
+export const sendOrder = (order) => {
+  return (dispatch, getState) => {
+    dispatch(fetchStarted());
+    Axios
+      .post(`${api.url}/${api.order}`, order)
+      .then(res => {
+        dispatch(addOrder(order));
+        console.log(order);
+        localStorage.setItem(`cart`, JSON.stringify([]));
+      })
+      .catch(err => {
+        dispatch(fetchError(err.message || true));
+      });
+  };
 };
 
 
@@ -115,6 +136,14 @@ export const reducer = (statePart = [], action = {}) => {
       return {
         ...statePart,
         data: statePart.data.filter((product) => product._id !== action.payload),
+      };
+    }
+
+    case ADD_ORDER: {
+      return {
+        ...statePart,
+        data: [],
+        order: action.payload,
       };
     }
 
