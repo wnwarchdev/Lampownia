@@ -19,5 +19,9 @@ export const initialState = {
       //   description: 'Now converted to modern LED fittings, these original fluorescent lights were salvaged from an engineering factory in Acton, West London. Sensitively restored to retain the manufacturers authentic cast detailing, the lights were produced by the iconic REVO brand - the British lighting powerhouse of the 1920s-1960s.',
       // },
     ],
+    loading: {
+      active: false,
+      error: false,
+    },
   },
 };

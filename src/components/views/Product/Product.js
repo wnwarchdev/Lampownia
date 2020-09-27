@@ -17,6 +17,8 @@ import Typography from '@material-ui/core/Typography';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
+import { Redirect } from 'react-router';
+
 
 
 class Component extends React.Component {
@@ -37,6 +39,8 @@ class Component extends React.Component {
     const {getSingleProduct, addToCart} = this.props;
     const {value} = this.state.data;
     const singleProduct = getSingleProduct[0];
+    // console.log(singleProduct);
+    // console.log(addToCart);
 
     const onChange = ( event ) => {
       event.preventDefault();
@@ -51,42 +55,51 @@ class Component extends React.Component {
     };
 
     return(
-      <div>
-        <Paper>
-          <Card>
-            <CardActionArea>
-              <img src={`/img/Products/${singleProduct.image}`} alt={`IMG of ${singleProduct.name}`} className={styles.image}/>
-              <CardContent>
-                <Typography component="h1">
-                  {singleProduct.name}
-                </Typography>
-                <Typography color="textSecondary" component="p">
-                  {`${singleProduct.category} lamp`}
-                </Typography>
-                <Typography color="textSecondary" component="p">
-                  {`${singleProduct.description}`}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-              <FormControl>
-                <Select value={value} onChange={onChange}>
-                  <MenuItem value={1}>1</MenuItem>
-                  <MenuItem value={2}>2</MenuItem>
-                  <MenuItem value={3}>3</MenuItem>
-                </Select>
-              </FormControl>
-              
-              <Button 
-                size="small" 
-                color="primary"
-                onClick={() => sendToCart( singleProduct, value )}>
-                ADD TO CART
-              </Button>
-            </CardActions>
-          </Card>
-        </Paper>
-      </div>
+
+      (singleProduct) ? (
+    
+        <div>
+          <Paper>
+            <Card>
+              <CardActionArea>
+                <img src={`/img/Products/${singleProduct.image}`} alt={`IMG of ${singleProduct.name}`} className={styles.image}/>
+                <CardContent>
+                  <Typography component="h1">
+                    {singleProduct.name}
+                  </Typography>
+                  <Typography color="textSecondary" component="p">
+                    {`${singleProduct.category} lamp`}
+                  </Typography>
+                  <Typography color="textSecondary" component="p">
+                    {`${singleProduct.description}`}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <FormControl>
+                  <Select value={value} onChange={onChange}>
+                    <MenuItem value={1}>1</MenuItem>
+                    <MenuItem value={2}>2</MenuItem>
+                    <MenuItem value={3}>3</MenuItem>
+                  </Select>
+                </FormControl>
+                
+                <Button 
+                  size="small" 
+                  color="primary"
+                  onClick={() => sendToCart( singleProduct, value )}>
+                  ADD TO CART
+                </Button>
+              </CardActions>
+            </Card>
+          </Paper>
+        </div>
+
+      ) : (
+        <Redirect to={`${process.env.PUBLIC_URL}/`}/>
+      )
+
+
     );
   }
 }

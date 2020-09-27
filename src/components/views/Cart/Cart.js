@@ -18,6 +18,7 @@ import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
+import { Link } from 'react-router-dom';
 
 
 function createData(name, price, quantity, total, _id) {
@@ -112,7 +113,7 @@ class Component extends React.Component {
               </TableBody>
             </Table>
           </TableContainer>
-          <Button>ORDER</Button>
+          <Button component={Link} to={'/Order'} >ORDER</Button>
         </Paper>
       </div>
     );

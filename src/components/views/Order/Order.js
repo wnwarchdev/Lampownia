@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// import { connect } from 'react-redux';
-// import { getAll } from '../../../redux/productsRedux';
-// import { getCart} from '../../../redux/cartRedux';
+import { connect } from 'react-redux';
+import { getAll } from '../../../redux/productsRedux';
+import { getCart} from '../../../redux/cartRedux';
 
 //import styles from './Order.module.scss';
 import Grid from '@material-ui/core/Grid';
@@ -214,7 +214,17 @@ Component.propTypes = {
   productsInCart: PropTypes.array,
 };
 
+const mapStateToProps = state => ({
+  products: getAll(state),
+  productsInCart: getCart(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+});
+
+const Container = (connect(mapStateToProps, mapDispatchToProps)(Component));
+
 
 export {
-  Component as Order,
+  Container as Order,
 };
