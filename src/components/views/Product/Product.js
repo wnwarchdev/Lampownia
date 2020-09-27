@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
-import { getProduct, fetchSingleProduct } from '../../../redux/productsRedux';
-import { addToCart } from '../../../redux/cartRedux';
+import { getAll, fetchProducts } from '../../../redux/productsRedux';
+import { addToCart, addCartToLocal, getCart } from '../../../redux/cartRedux';
 
 import styles from './Product.module.scss';
 
@@ -29,16 +29,17 @@ class Component extends React.Component {
   }
 
   async componentDidMount(){
-    const {fetchSingleProduct} = this.props;
-    const id = this.props.match.params.id;
-    console.log(id);
-    await fetchSingleProduct(id);
+    // const {fetchSingleProduct} = this.props;
+    // const id = this.props.match.params.id;
+    // console.log(id);
+    // await fetchSingleProduct(id);
+    await this.props.fetchProducts();
   }
 
   render(){
-    const {getSingleProduct, addToCart} = this.props;
+    const {products, addToCart} = this.props;
     const {value} = this.state.data;
-    const singleProduct = getSingleProduct[0];
+    const singleProduct = products.filter(product => product._id === this.props.match.params.id)[0];
     // console.log(singleProduct);
     // console.log(addToCart);
 
@@ -50,8 +51,9 @@ class Component extends React.Component {
         }});
     };
 
-    const sendToCart = (singleProduct, value) => {
-      addToCart(singleProduct, value);
+    const sendToCart = async(singleProduct, value) => {
+      await addToCart(singleProduct, value);
+      this.props.addCartToLocal(singleProduct, value);
     };
 
     return(
@@ -106,9 +108,6 @@ class Component extends React.Component {
 
 
 
-
-
-
 Component.propTypes = {
   products: PropTypes.array,
   match: PropTypes.object,
@@ -117,15 +116,19 @@ Component.propTypes = {
   fetchItem: PropTypes.func,
   fetchSingleProduct: PropTypes.func,
   getSingleProduct: PropTypes.any,
+  fetchProducts: PropTypes.func,
+  addCartToLocal: PropTypes.func,
 };
 
 const mapStateToProps = (state, id) => ({
-  getSingleProduct: getProduct(state, id),
+  products: getAll(state),
+  getCart: getCart(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchSingleProduct: (id) => dispatch(fetchSingleProduct(id)),
+  fetchProducts: () => dispatch(fetchProducts()),
   addToCart: (productInformation, value) => dispatch(addToCart(productInformation, value)),
+  addCartToLocal: (getSingleProduct, value) => dispatch(addCartToLocal(getSingleProduct, value)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

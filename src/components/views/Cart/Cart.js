@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { getAll } from '../../../redux/productsRedux';
-import { getCart, changeValue, clearCart } from '../../../redux/cartRedux';
+import { getCart, changeValue, clearCart, cartFromLocal, cartToLocal } from '../../../redux/cartRedux';
 
 //import styles from './Cart.module.scss';
 
@@ -27,6 +27,14 @@ function createData(name, price, quantity, total, _id) {
 
 
 class Component extends React.Component {
+
+  componentDidMount() {
+    this.props.cartFromLocal();
+  }
+
+  componentDidUpdate() {
+    this.props.cartToLocal(this.props.cartItems);
+  }
 
   render(){
     const { cartItems, changeValue, clearCart} = this.props;
@@ -126,6 +134,8 @@ Component.propTypes = {
   cartItems: PropTypes.array,
   changeValue: PropTypes.func,
   clearCart: PropTypes.func,
+  cartFromLocal: PropTypes.func,
+  cartToLocal: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -136,6 +146,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   changeValue: ({_id, value}) => dispatch(changeValue({_id, value})),
   clearCart: (_id) => dispatch(clearCart(_id)),
+  cartFromLocal: () => dispatch(cartFromLocal()),
+  cartToLocal: (cart) => dispatch(cartToLocal(cart)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 
 const router = require('./routes/products.routes');
@@ -34,6 +36,14 @@ app.use('*', (req, res) => {
 const dbURI = process.env.NODE_ENV === `production` ? `mongodb+srv://wnw:kodilla1@cluster0.cfcxb.mongodb.net/lampownia?retryWrites=true&w=majority` : `mongodb://localhost:27017/lampownia`;
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
+
+
+app.use(session({ 
+  secret: 'shhh!',
+  store: new MongoStore({ mongooseConnection: db }),
+}));
+
+
 db.once('open', () => {
   console.log('Successfully connected to the db');
 });
