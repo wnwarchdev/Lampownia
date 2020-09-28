@@ -11,9 +11,6 @@ const Component = () => (
       <Button className={styles.logo} component={NavLink} exact to={`${process.env.PUBLIC_URL}/`} activeClassName='active'>LAMPOWNIA</Button> 
       <div>
         <Button className={styles.link} component={NavLink} to={`${process.env.PUBLIC_URL}/cart`} activeClassName='active'>CART</Button>
-        <Button className={styles.link} component={NavLink} to={`${process.env.PUBLIC_URL}/order`} activeClassName='active'>ORDER</Button>
-        <Button className={styles.link} component={NavLink} to={`${process.env.PUBLIC_URL}/products/1`} activeClassName='active' >PRODUCT</Button>
-        <Button className={styles.link} component={NavLink} to={`${process.env.PUBLIC_URL}/sth`} activeClassName='active' >NFOUND</Button>
       </div>
     </div>
   </div>

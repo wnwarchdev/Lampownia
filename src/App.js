@@ -19,7 +19,8 @@ import { Order } from './components/views/Order/Order';
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main: '#f0bf4d' },
+    primary: { main: '#fff' },
+    secondary: { main: '#2d2926' },
   },
 });
 
