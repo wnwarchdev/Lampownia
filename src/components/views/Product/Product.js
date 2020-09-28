@@ -18,6 +18,8 @@ import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Redirect } from 'react-router';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 
 
@@ -61,10 +63,21 @@ class Component extends React.Component {
       (singleProduct) ? (
     
         <div>
+
+          <Carousel showThumbs={false}>
+            {singleProduct.gallery && singleProduct.gallery.map((item, i) => (
+              <div key={i}>
+                <img src={`/img/Products/${item}`} className={styles.image} alt={`IMG ${i + 1} of ${singleProduct.name}`} />
+              </div>
+            ))}
+          </Carousel>
+
+
           <Paper>
             <Card>
               <CardActionArea>
-                <img src={`/img/Products/${singleProduct.image}`} alt={`IMG of ${singleProduct.name}`} className={styles.image}/>
+                {/* {<img src={`/img/Products/${singleProduct.image}`} alt={`IMG of ${singleProduct.name}`} className={styles.image}/>} */}
+
                 <CardContent>
                   <Typography component="h1">
                     {singleProduct.name}
