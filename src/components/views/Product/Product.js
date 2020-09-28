@@ -54,8 +54,10 @@ class Component extends React.Component {
     };
 
     const sendToCart = async(singleProduct, value) => {
-      await addToCart(singleProduct, value);
-      this.props.addCartToLocal(singleProduct, value);
+      const singleProductLite = {price: singleProduct.price, name: singleProduct.name, id: singleProduct.id, _id: singleProduct._id};
+      console.log(singleProductLite);
+      await addToCart(singleProductLite, value);
+      this.props.addCartToLocal(singleProductLite, value);
     };
 
     return(
@@ -101,7 +103,7 @@ class Component extends React.Component {
                 
                 <Button 
                   size="small" 
-                  color="primary"
+                  color="secondary"
                   onClick={() => sendToCart( singleProduct, value )}>
                   ADD TO CART
                 </Button>
