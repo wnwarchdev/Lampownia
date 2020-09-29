@@ -3,12 +3,17 @@
 .root {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     box-shadow: none;
 }
 
 .logo{
-    font-weight: 700;
+    font-weight: 900;
+    font-family: $font-header;
+    text-transform: lowercase;
+    font-style: italic;
+    font-size: $base-size * 3;
 }
 
 .link{

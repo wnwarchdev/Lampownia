@@ -22,11 +22,9 @@ class Component extends React.Component {
     const { loading, products } = this.props;
     return (
       <section className={styles.root}>
-        <Loading />
         {loading ? <Loading />
           :
           products.map(product => <Item key={product._id} product={product}  />)}
-        
       </section>
     );
   }

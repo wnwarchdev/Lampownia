@@ -4,27 +4,42 @@
     text-decoration: none;
     &:focus, &:hover, &:visited, &:link, &:active {
         text-decoration: none;
+        color: inherit;
     }
 }
 
-p {
-    text-align:left;    
-}
-
 .card {
-
     margin: 5px;
-    padding: 5px;
     display: flex;
     flex-direction: column ;
-    background-color: rgb(255, 230, 0);
-    box-shadow: 1px 1px 5px $black;
-    width: 300px;
-    
+    width: 400px;
+    height: 400px;
+    position: relative; 
 }
 
 .image {
-    width: 250px;
-    object-fit: cover
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    transition: filter 1s;
+    &:hover {
+        filter: contrast(150%) grayscale(20%);;
+    }
+}
+
+.name {
+    position: absolute;
+    left:15px;
+    color:white;
+    font-family: $font-text;
+    text-transform: uppercase;
+}
+
+.price {
+    position: absolute;
+    right:15px;
+    bottom:15px;
+    color:white;
+    text-transform: uppercase;
 }
 
