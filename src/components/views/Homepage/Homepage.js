@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Item } from '../../common/Item/Item';
+import { Loading } from '../../common/Loading/Loading';
 
 import { connect } from 'react-redux';
 import { getAll, fetchProducts } from '../../../redux/productsRedux';
@@ -18,10 +19,14 @@ class Component extends React.Component {
   }
 
   render() {
-    const { products } = this.props;
+    const { loading, products } = this.props;
     return (
       <section className={styles.root}>
-        {products.map(product => <Item key={product._id} product={product}  />)}
+        <Loading />
+        {loading ? <Loading />
+          :
+          products.map(product => <Item key={product._id} product={product}  />)}
+        
       </section>
     );
   }
@@ -30,10 +35,12 @@ class Component extends React.Component {
 Component.propTypes = {
   products: PropTypes.array,
   fetchProducts: PropTypes.func,
+  loading: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({
   products: getAll(state),
+  loading: state.products.loading.active,
 });
 
 const mapDispatchToProps = dispatch => ({

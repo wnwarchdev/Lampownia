@@ -1,0 +1,20 @@
+@import "../../../styles/settings.scss";
+
+.loading {
+  border: 16px solid white;
+  border-top: 16px solid black;
+  border-bottom: 16px solid black;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin360 5s linear infinite;
+}
+
+@keyframes spin360 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
