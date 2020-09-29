@@ -12,7 +12,7 @@ import { Header } from '../Header/Header';
 
 const Component = ({className, children}) => (
   <div className={styles.root}>
-    <AppBar>
+    <AppBar style={{ boxShadow: 'none'}}>
       <Container maxWidth="lg">
         <Toolbar disableGutters>
           <Header/>
