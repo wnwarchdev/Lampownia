@@ -1,0 +1,28 @@
+@import "../../../styles/settings.scss";
+
+.root {
+display: inline-block;
+transform: translateY(14px) scale(0.8);
+margin-bottom: 9px;
+
+}
+
+.halfTop {
+  width: 40px;
+  height: 20px;
+  background-color: $black;
+  border-top-left-radius: 23px;
+  border-top-right-radius: 23px;
+  border: 3px solid $black;
+  border-bottom: 0;
+}
+  
+.halfBottom {
+  width: 40px;
+  height: 20px;
+  background-color: $white;
+  border-bottom-left-radius: 23px;
+  border-bottom-right-radius: 23px;
+  border: 3px solid $black;
+  border-top: 0;
+}

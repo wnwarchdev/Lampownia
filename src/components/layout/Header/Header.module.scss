@@ -14,12 +14,19 @@
     text-transform: lowercase;
     font-style: italic;
     font-size: $base-size * 3;
+    display: inline-block;
 }
 
 .link{
     border: 2px solid $black;
     margin: 0 3px;
 }
+
+.group{
+    
+}
+
+
 
 
 
