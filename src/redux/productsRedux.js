@@ -8,12 +8,6 @@ export const getAll = ({products}) => {
   return allproducts;
 };
 
-// export const getProduct = ({products}, id) => {
-//   const product = products.data.filter(product => product._id === id.match.params.id); 
-
-//   return product;
-// };
-
 /* action name creator */
 const reducerName = 'products';
 const createActionName = name => `app/${reducerName}/${name}`;
@@ -45,21 +39,6 @@ export const fetchProducts = () => {
       });
   };
 };
-// export const fetchSingleProduct =  id  => {
-//   return (dispatch, getState) => {
-//     dispatch(fetchStarted());
-
-//     Axios
-//       .get(`${api.url}/${api.products}/${id}`)
-//       .then(res => {
-//         dispatch(loadProduct(res.data));
-//       })
-//       .catch(err => {
-//         dispatch(fetchError(err.message || true));
-//       });
-//   };
-// };
-
 
 /* reducer */
 export const reducer = (statePart = [], action = {}) => {
@@ -92,16 +71,6 @@ export const reducer = (statePart = [], action = {}) => {
         },
       };
     }
-    // case LOAD_PRODUCT: {
-    //   return {
-    //     ...statePart,
-    //     loading: {
-    //       active: false,
-    //       error: false,
-    //     },
-    //     singleProduct: action.payload,
-    //   };
-    // }
     default:
       return statePart;
   }

@@ -38,11 +38,11 @@ export const cartFromLocal = () => {
 
 export const addCartToLocal = (cart, value) => () => {
   const createObject = {...cart, value};
-  let arr = [];
-  arr = JSON.parse(localStorage.getItem('cart')) || [];
-  const newArr = arr.filter(a => a._id !== createObject._id);
-  newArr.push(createObject);
-  localStorage.setItem(`cart`, JSON.stringify(newArr));
+  let array = [];
+  array = JSON.parse(localStorage.getItem('cart')) || [];
+  const newArray = array.filter(a => a._id !== createObject._id);
+  newArray.push(createObject);
+  localStorage.setItem(`cart`, JSON.stringify(newArray));
 };
 
 export const sendOrder = (order) => {
@@ -130,7 +130,6 @@ export const reducer = (statePart = [], action = {}) => {
         }),
       };
     }
-
 
     case CLEAR_CART: {
       return {

@@ -17,6 +17,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableContainer from '@material-ui/core/TableContainer';
 import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 
 function createData(name, price, value, total, id) {
   return { name, price, value, total, id };
@@ -209,7 +210,7 @@ class Component extends React.Component {
           </Grid>
 
           <div>
-            <Button>BACK</Button>
+            <Button component={Link} to={'/Cart'}>BACK</Button>
             <Button onClick={() => {executeOrder(order, productsInCart); alert('ok!'); } } >ORDER</Button>
           </div>
 
@@ -217,7 +218,6 @@ class Component extends React.Component {
       ) : (
         <div>
           <Redirect to={`${process.env.PUBLIC_URL}/`}/>
-          {/* {alert('Please choose items first...')} */}
         </div>
       )
     );

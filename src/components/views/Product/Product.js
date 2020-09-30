@@ -31,10 +31,6 @@ class Component extends React.Component {
   }
 
   async componentDidMount(){
-    // const {fetchSingleProduct} = this.props;
-    // const id = this.props.match.params.id;
-    // console.log(id);
-    // await fetchSingleProduct(id);
     await this.props.fetchProducts();
   }
 
@@ -42,8 +38,6 @@ class Component extends React.Component {
     const {products, addToCart} = this.props;
     const {value} = this.state.data;
     const singleProduct = products.filter(product => product._id === this.props.match.params.id)[0];
-    // console.log(singleProduct);
-    // console.log(addToCart);
 
     const onChange = ( event ) => {
       event.preventDefault();
@@ -78,8 +72,6 @@ class Component extends React.Component {
           <Paper>
             <Card>
               <CardActionArea>
-                {/* {<img src={`/img/Products/${singleProduct.image}`} alt={`IMG of ${singleProduct.name}`} className={styles.image}/>} */}
-
                 <CardContent>
                   <Typography component="h1">
                     {singleProduct.name}
@@ -127,15 +119,11 @@ Component.propTypes = {
   products: PropTypes.array,
   match: PropTypes.object,
   addToCart: PropTypes.func,
-  product: PropTypes.any,
-  fetchItem: PropTypes.func,
-  fetchSingleProduct: PropTypes.func,
-  getSingleProduct: PropTypes.any,
   fetchProducts: PropTypes.func,
   addCartToLocal: PropTypes.func,
 };
 
-const mapStateToProps = (state, id) => ({
+const mapStateToProps = (state) => ({
   products: getAll(state),
   getCart: getCart(state),
 });
