@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './NotFound.module.scss';
+//import styles from './NotFound.module.scss';
 
 const Component = ({className}) => (
-  <div className={styles.root}>
+  <div>
     <h2>NotFound</h2>
   </div>
 );
