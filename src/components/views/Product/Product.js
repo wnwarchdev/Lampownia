@@ -106,41 +106,6 @@ class Component extends React.Component {
           </Carousel>
 
 
-          {/* <Paper>
-            <Card>
-              <CardActionArea>
-                <CardContent>
-                  <Typography component="h1">
-                    {singleProduct.name}
-                  </Typography>
-                  <Typography color="textSecondary" component="p">
-                    {`${singleProduct.category} lamp`}
-                  </Typography>
-                  <Typography color="textSecondary" component="p">
-                    {`${singleProduct.description}`}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <FormControl>
-                  <Select value={quantity} onChange={onChange}>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                  </Select>
-                </FormControl>
-                
-                <Button 
-                  size="small" 
-                  color="secondary"
-                  onClick={() => sendToCart( singleProduct, quantity )}>
-                  ADD TO CART
-                </Button>
-              </CardActions>
-            </Card>
-          </Paper> */}
-
-
           
           {singleProduct.gallery && singleProduct.gallery.map((item, i) => (
             <div key={i} className={styles.tile}>

@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getAll } from '../../../redux/productsRedux';
 import { getCart, changeQuantity, clearCart, cartFromLocal, cartToLocal } from '../../../redux/cartRedux';
+import { NavLink } from 'react-router-dom';
 
-//import styles from './Cart.module.scss';
+import styles from './Cart.module.scss';
 
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -27,6 +28,7 @@ function createData(name, price, quantity, total, _id) {
 
 
 class Component extends React.Component {
+  
 
   componentDidMount() {
     this.props.cartFromLocal();
@@ -38,6 +40,7 @@ class Component extends React.Component {
 
   render(){
     const { cartItems, changeQuantity, clearCart} = this.props;
+    
   
     const rows = cartItems ? cartItems.map(product => createData(
       product.name,
@@ -65,64 +68,82 @@ class Component extends React.Component {
   
     return(
       <div>
-        <Paper elevation={0} >
-          <h2>Cart</h2>
-          <TableContainer component={Paper}>
-            <Table>
+        <h1 className={styles.center}>Koszyk</h1>
+        <TableContainer>
+          <Table>
+            <TableHead>
+              <TableRow >
+                <TableCell className={styles.center}>Produkt</TableCell>
+                <TableCell className={styles.center}>Cena PLN</TableCell>
+                <TableCell className={styles.center}>Ilość</TableCell>
+                <TableCell className={styles.center}>Razem PLN</TableCell>
+                <TableCell className={styles.center}></TableCell>
+              </TableRow>
+            </TableHead>
 
-              <TableHead>
-                <TableRow>
-                  <TableCell>Product</TableCell>
-                  <TableCell>Price</TableCell>
-                  <TableCell>Qty</TableCell>
-                  <TableCell>Total</TableCell>
-                  <TableCell>Remove</TableCell>
-                </TableRow>
-              </TableHead>
+            <TableBody>
+              {rows.map((row) => (
+                <TableRow key={row.name}>
 
-              <TableBody>
-                {rows.map((row) => (
-                  <TableRow key={row.name}>
-
-                    <TableCell component="th" scope="row">
-                      {row.name}
-                    </TableCell>
-
-                    <TableCell>{row.price}</TableCell>
-
-                    <TableCell>
-                      <FormControl>
-                        <Select value={row.quantity} onChange={e => changeInput(e, row._id)}>
-                          <MenuItem value={1}>1</MenuItem>
-                          <MenuItem value={2}>2</MenuItem>
-                          <MenuItem value={3}>3</MenuItem>
-                        </Select>
-                      </FormControl>
-                    </TableCell>
-
-                    <TableCell>{row.total}</TableCell>
-
-                    <TableCell>
-                      <Button onClick={() => removeProduct(row._id)}>REMOVE</Button>
-                    </TableCell>
-
-                  </TableRow>
-                ))}
-                <TableRow key="total">
-                  <TableCell component="th" scope="row">
-                    TOTAL
+                  <TableCell className={styles.center}>
+                    <h4>{row.name}</h4>
                   </TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell>{totalPrice()}</TableCell>
+
+                  <TableCell className={styles.center}>
+                    {row.price}
+                  </TableCell>
+
+                  <TableCell className={styles.center}>
+                    <FormControl>
+                      <Select disableUnderline className={styles.select} value={row.quantity} onChange={e => changeInput(e, row._id)}>
+                        <MenuItem value={1}>1</MenuItem>
+                        <MenuItem value={2}>2</MenuItem>
+                        <MenuItem value={3}>3</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </TableCell>
+
+                  <TableCell className={styles.center}>
+                    {row.total}
+                  </TableCell>
+
+                  <TableCell className={styles.short}>
+                    <Button onClick={() => removeProduct(row._id) } className={styles.xmark}></Button>
+                  </TableCell>
 
                 </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <Button component={Link} to={'/Order'} >ORDER</Button>
-        </Paper>
+              ))}
+              <TableRow footer key="total">
+                <TableCell className={styles.noBorder}></TableCell >
+                <TableCell className={styles.noBorder}></TableCell>
+                <TableCell className={styles.noBorder}></TableCell>
+                <TableCell className={styles.center}><h4>{totalPrice()}</h4></TableCell>
+                <TableCell className={styles.noBorder}></TableCell>
+
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+
+        <div className={styles.center}>
+          <Button
+            className={styles.button}
+            component={NavLink}
+            exact
+            to={`${process.env.PUBLIC_URL}/`}>
+            Powrót
+          </Button>
+
+          <Button
+            className={styles.buttonOrder}
+            component={NavLink}
+            exact
+            to={'/Order'}>
+              Zamawiam
+          </Button>
+        </div>
+
+
       </div>
     );
   }
