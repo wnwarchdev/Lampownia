@@ -1,0 +1,29 @@
+@import "../../../styles/settings.scss";
+
+.root {
+display: inline-block;
+transform: translateY(14px) scale(0.7);
+margin-bottom: 30px;
+}
+
+  
+.circle {
+  width: 40px;
+  height: 40px;
+  background-color: $white;
+  border-radius: 23px;
+  border: 3px solid $black;
+  position: relative;
+}
+
+.arrow {
+  width: 0; 
+  height: 0; 
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 18px solid $black;
+  left:50%;
+  top:50%;
+  transform: translate(-50%, -65%);
+  position: absolute;
+}

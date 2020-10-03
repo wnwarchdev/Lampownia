@@ -7,7 +7,7 @@ import { Logo } from '../../common/Logo/Logo';
 import styles from './Header.module.scss';
 
 const Component = () => (
-  <div className={styles.root}>
+  <header className={styles.root}>
     <div className={styles.root}>
       <div className={styles.group}>
         <Button className={styles.logo} disableRipple={true} style={{ backgroundColor: 'transparent' }}  component={NavLink} exact to={`${process.env.PUBLIC_URL}/`} activeClassName='active'>
@@ -19,7 +19,7 @@ const Component = () => (
         <Button className={styles.button} component={NavLink} to={`${process.env.PUBLIC_URL}/cart`} activeClassName='active'>KOSZYK</Button>
       </div>
     </div>
-  </div>
+  </header>
 );
 
 Component.propTypes = {

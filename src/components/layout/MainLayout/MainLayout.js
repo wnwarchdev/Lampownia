@@ -6,6 +6,7 @@ import Container from '@material-ui/core/Container';
 
 import styles from './MainLayout.module.scss';
 import { Header } from '../Header/Header';
+import { Footer } from '../Footer/Footer';
 
 
 const Component = ({children}) => (
@@ -19,8 +20,12 @@ const Component = ({children}) => (
     </AppBar>
 
     <Container maxWidth="lg" className={styles.main}>
+      <a name="top"></a>
       <Toolbar/>
-      {children}
+      <Container className={styles.content}>
+        {children}
+        <Footer />
+      </Container>
     </Container>
   </div>
 );
