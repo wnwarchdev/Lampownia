@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { getAll } from '../../../redux/productsRedux';
-import { getCart, changeValue, clearCart, cartFromLocal, cartToLocal } from '../../../redux/cartRedux';
+import { getCart, changeQuantity, clearCart, cartFromLocal, cartToLocal } from '../../../redux/cartRedux';
 
 //import styles from './Cart.module.scss';
 
@@ -37,19 +37,19 @@ class Component extends React.Component {
   }
 
   render(){
-    const { cartItems, changeValue, clearCart} = this.props;
+    const { cartItems, changeQuantity, clearCart} = this.props;
   
     const rows = cartItems ? cartItems.map(product => createData(
       product.name,
       product.price,
-      product.value,
-      product.value
+      product.quantity,
+      product.quantity
         ?
-        product.price*product.value:product.price*0, product._id)) : [];
+        product.price*product.quantity:product.price*0, product._id)) : [];
   
     const changeInput = (event, _id) => {
       event.preventDefault();
-      changeValue({_id, value: parseInt(event.target.value)});
+      changeQuantity({_id, quantity: parseInt(event.target.value)});
     };
 
     const removeProduct = (_id) => {
@@ -132,7 +132,7 @@ class Component extends React.Component {
 
 Component.propTypes = {
   cartItems: PropTypes.array,
-  changeValue: PropTypes.func,
+  changeQuantity: PropTypes.func,
   clearCart: PropTypes.func,
   cartFromLocal: PropTypes.func,
   cartToLocal: PropTypes.func,
@@ -144,7 +144,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  changeValue: ({_id, value}) => dispatch(changeValue({_id, value})),
+  changeQuantity: ({_id, quantity}) => dispatch(changeQuantity({_id, quantity})),
   clearCart: (_id) => dispatch(clearCart(_id)),
   cartFromLocal: () => dispatch(cartFromLocal()),
   cartToLocal: (cart) => dispatch(cartToLocal(cart)),

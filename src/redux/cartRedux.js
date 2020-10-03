@@ -10,7 +10,7 @@ const createActionName = name => `app/${reducerName}/${name}`;
 
 /* action types */
 const ADD_TO_CART = createActionName('ADD_TO_CART');
-const CHANGE_VALUE = createActionName('CHANGE_VALUE');
+const CHANGE_QUANTITY = createActionName('CHANGE_QUANTITY');
 const CLEAR_CART = createActionName('CLEAR_CART');
 const FETCH_START = createActionName('FETCH_START');
 const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
@@ -18,8 +18,8 @@ const FETCH_ERROR = createActionName('FETCH_ERROR');
 const ADD_ORDER = createActionName('ADD_ORDER');
 
 /* action creators */
-export const addToCart = (payload, value) => ({ payload, value, type: ADD_TO_CART });
-export const changeValue = (payload) => ({ payload, type: CHANGE_VALUE });
+export const addToCart = (payload, quantity) => ({ payload, quantity, type: ADD_TO_CART });
+export const changeQuantity = (payload) => ({ payload, type: CHANGE_QUANTITY });
 export const clearCart = (payload) => ({ payload, type: CLEAR_CART });
 export const fetchStarted = payload => ({ payload, type: FETCH_START });
 export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
@@ -36,8 +36,8 @@ export const cartFromLocal = () => {
     dispatch(fetchSuccess(JSON.parse(localStorage.getItem('cart'))));
   };};
 
-export const addCartToLocal = (cart, value) => () => {
-  const createObject = {...cart, value};
+export const addCartToLocal = (cart, quantity) => () => {
+  const createObject = {...cart, quantity};
   let array = [];
   array = JSON.parse(localStorage.getItem('cart')) || [];
   const newArray = array.filter(a => a._id !== createObject._id);
@@ -110,22 +110,22 @@ export const reducer = (statePart = [], action = {}) => {
             ?
             [...products]
             :
-            [...products, { ...action.payload, value: action.value }],
+            [...products, { ...action.payload, quantity: action.quantity }],
         };
       } 
       return {
         ...statePart,
-        products: [{ ...action.payload, value: action.value}],
+        products: [{ ...action.payload, quantity: action.quantity}],
       };
     }
 
 
-    case CHANGE_VALUE: {
+    case CHANGE_QUANTITY: {
       return {
         ...statePart,
         data: statePart.data.map((product) => {
           if (product._id === action.payload._id)
-            return { ...product, value: action.payload.value };
+            return { ...product, quantity: action.payload.quantity };
           return product;
         }),
       };

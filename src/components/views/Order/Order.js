@@ -19,8 +19,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 
-function createData(name, price, value, total, id) {
-  return { name, price, value, total, id };
+function createData(name, price, quantity, total, id) {
+  return { name, price, quantity, total, id };
 }
 
 class Component extends React.Component {
@@ -64,8 +64,8 @@ class Component extends React.Component {
     const rows = productsInCart ? productsInCart.map(product => createData(
       product.name,
       product.price,
-      product.value,
-      product.price*product.value,
+      product.quantity,
+      product.price*product.quantity,
       product.id)) : [];
 
     const totalPrice = () => {
@@ -98,7 +98,7 @@ class Component extends React.Component {
                         {row.name}
                       </TableCell>
                       <TableCell>{row.price}</TableCell>
-                      <TableCell>{row.value}</TableCell>
+                      <TableCell>{row.quantity}</TableCell>
                       <TableCell>{row.total}</TableCell>
                     </TableRow>
                   ))}
