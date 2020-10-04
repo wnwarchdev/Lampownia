@@ -6,15 +6,21 @@
     align-items: center;
     width: 100%;
     box-shadow: none;
+    height: 70px;
 }
 
 .logo{
+    height: 50px;
+}
+
+.logoName{
     font-weight: 900;
     font-family: $font-header;
     text-transform: lowercase;
     font-style: italic;
     font-size: $base-size * 2.5;
     display: inline-block;
+    margin: 0;
 }
 
 .link{
@@ -23,14 +29,19 @@
 }
 
 .button {
-    //height:50px;
-    //border: 2px solid  $black;
     border-radius: 0px;
+    top:0;
     color: $black;
     &:hover {
         background-color: lightgray;
     }
 }
+
+@media only screen and (max-width: $break-s) {
+    .logoName {
+      display:none;
+    }
+  }
 
 
 

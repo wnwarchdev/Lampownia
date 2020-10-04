@@ -67,12 +67,12 @@ class Component extends React.Component {
     };
   
     return(
-      <div>
+      <div className={styles.root}>
         <h1 className={styles.center}>Koszyk</h1>
-        <TableContainer>
-          <Table>
+        <TableContainer >
+          <Table  className={styles.table}>
             <TableHead>
-              <TableRow >
+              <TableRow className={styles.hideS}>
                 <TableCell className={styles.center}>Produkt</TableCell>
                 <TableCell className={styles.center}>Cena PLN</TableCell>
                 <TableCell className={styles.center}>Ilość</TableCell>
@@ -83,7 +83,7 @@ class Component extends React.Component {
 
             <TableBody>
               {rows.map((row) => (
-                <TableRow key={row.name}>
+                <TableRow key={row.name} className={styles.stackXs}>
 
                   <TableCell className={styles.center}>
                     <h4>{row.name}</h4>
@@ -113,7 +113,7 @@ class Component extends React.Component {
 
                 </TableRow>
               ))}
-              <TableRow footer key="total">
+              <TableRow footer key="total" className={styles.hideS}>
                 <TableCell className={styles.noBorder}></TableCell >
                 <TableCell className={styles.noBorder}></TableCell>
                 <TableCell className={styles.noBorder}></TableCell>
@@ -125,7 +125,10 @@ class Component extends React.Component {
           </Table>
         </TableContainer>
 
-        <div className={styles.center}>
+
+
+        <div className={styles.total}>
+          <h3 className={styles.center}>{totalPrice()} PLN</h3>
           <Button
             className={styles.button}
             component={NavLink}

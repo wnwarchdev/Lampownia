@@ -97,7 +97,7 @@ class Component extends React.Component {
 
 
 
-          <Carousel showIndicators={false} showThumbs={false} autoPlay infiniteLoop interval='2000' className={styles.tile}>
+          <Carousel showIndicators={false} showThumbs={false} autoPlay infiniteLoop interval='2000' className={styles.tileCarousel}>
             {singleProduct.gallery && singleProduct.gallery.map((item, i) => (
               <div key={i} >
                 <img src={`/img/Products/${singleProduct.name}/${item}.jpg`} className={styles.image} alt={`IMG ${i + 1} of ${singleProduct.name}`} />
@@ -108,19 +108,20 @@ class Component extends React.Component {
 
           
           {singleProduct.gallery && singleProduct.gallery.map((item, i) => (
-            <div key={i} className={styles.tile}>
+            <div key={i} className={styles.tileGallery}>
               <img src={`/img/Products/${singleProduct.name}/${item}.jpg`} className={styles.image} alt={`IMG ${i + 1} of ${singleProduct.name}`} />
             </div>
           ))}
+          
 
           <div className={styles.tile}>
 
             <div className={styles.text}>
               <h3>{singleProduct.name}</h3>
-              <p>Kategoria: {singleProduct.category}</p>
-              <p>Średnica: {singleProduct.dim.diameter} mm</p>
-              <p>Wysokość: {singleProduct.dim.height} mm</p>
-              <p>Waga: {singleProduct.dim.weight} kg</p>
+              <h5>Kategoria: lampa {singleProduct.category}</h5>
+              <h5>Średnica: {singleProduct.dim.diameter} mm</h5>
+              <h5>Wysokość: {singleProduct.dim.height} mm</h5>
+              <h5>Waga: {singleProduct.dim.weight} kg</h5>
 
 
 

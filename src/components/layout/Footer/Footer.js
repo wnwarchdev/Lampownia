@@ -12,13 +12,13 @@ const Component = () => {
 
   return(
     <footer className={styles.root}>
-      <div>
+      <div className={styles.footerLinks}>
         <Button className={styles.button} component={NavLink} to={`${process.env.PUBLIC_URL}/about`} activeClassName='active'>O NAS</Button>
         <Button className={styles.button} component={NavLink} to={`${process.env.PUBLIC_URL}/faq`} activeClassName='active'>FAQ</Button>
         <Button className={styles.button} href={`https://www.facebook.com`} activeClassName='active'>FACEBOOK</Button>
       </div>
       <div>
-        <span>© Lampownia 2020</span>
+        <span className={styles.copyright}>© Lampownia 2020</span>
         <Button style={{ backgroundColor: 'transparent' }}  disableRipple={true} className={styles.button} href="#top">
           <TopArrow/>
         </Button>

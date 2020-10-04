@@ -1,5 +1,9 @@
 @import '../../../styles/settings.scss';
 
+.root{
+    margin: 5px;
+}
+
 .center{
     text-align: center;
 }
@@ -46,3 +50,32 @@
     padding:10px;
     min-width: 300px;
 }
+
+@media only screen and (max-width: $break-m) {
+
+    .order {
+        flex-direction: column;
+    }
+
+    .message {
+        border:2px solid $black;
+        border-top:none;
+        min-height: 200px;
+        min-width: 200px;
+    }
+
+    .center{
+        padding: 0;
+        padding-top: 2px;
+    }
+
+    h4{
+        margin: 5px 0;
+    }
+
+    .grid{
+        padding: 10px;
+    }
+    
+
+  }

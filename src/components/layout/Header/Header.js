@@ -12,7 +12,7 @@ const Component = () => (
       <div className={styles.group}>
         <Button className={styles.logo} disableRipple={true} style={{ backgroundColor: 'transparent' }}  component={NavLink} exact to={`${process.env.PUBLIC_URL}/`} activeClassName='active'>
           <Logo/>
-          LAMPOWNIA
+          <h1 className={styles.logoName}>LAMPOWNIA</h1>
         </Button> 
       </div>
       <div>

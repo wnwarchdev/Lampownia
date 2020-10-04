@@ -85,7 +85,7 @@ class Component extends React.Component {
     return (
 
       (rows.length !== 0) ? (
-        <div>
+        <div className={styles.root}>
           <h1 className={styles.center}>Zamówienie</h1>
 
           <div className={styles.order}>
@@ -148,6 +148,7 @@ class Component extends React.Component {
           <Grid
             container
             spacing={3}
+            className={styles.grid}
           >
             <Grid item xs={12} md={6}>
               <TextField
@@ -188,6 +189,7 @@ class Component extends React.Component {
                 id="adress"
                 name="adress"
                 label="Adres"
+                multiline
                 fullWidth
                 value={order.adress}
                 onChange={(e) => changeInput(e, 'adress')}
