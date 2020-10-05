@@ -32,6 +32,7 @@ class Component extends React.Component {
 
   componentDidMount() {
     this.props.cartFromLocal();
+    window.scrollTo(0, 0);
   }
 
   componentDidUpdate() {
@@ -40,6 +41,9 @@ class Component extends React.Component {
 
   render(){
     const { cartItems, changeQuantity, clearCart} = this.props;
+    console.log('cartItems: ', this.props.cartItems);
+    console.log('props : ', this.props);
+    console.log('state : ', this.state);
     
   
     const rows = cartItems ? cartItems.map(product => createData(
@@ -49,6 +53,10 @@ class Component extends React.Component {
       product.quantity
         ?
         product.price*product.quantity:product.price*0, product._id)) : [];
+
+    const rows2 = cartItems ? cartItems.map(product => createData(
+      product.name)) : [];
+    console.log(rows2);
   
     const changeInput = (event, _id) => {
       event.preventDefault();

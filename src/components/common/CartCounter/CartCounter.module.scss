@@ -1,0 +1,42 @@
+@import "../../../styles/settings.scss";
+
+.root{
+    &:hover .tooltip{
+        
+        visibility: visible;
+        transition-delay: .5s;
+    }
+    position: relative;
+}
+
+.tooltip{
+    visibility: hidden;
+    display: flex;
+    position: absolute;
+    right:0;
+    top: 35px;
+    color: $white;
+    background-color: $black;
+    flex-wrap: wrap;
+    max-width: 400px;
+    min-width: 88px;
+    width: auto;
+}
+
+.row{
+    border-bottom: 1px solid $white;
+    width:100%;
+    &:last-of-type {
+        border-bottom: none;
+      }
+}
+
+
+.span{
+    display: block;
+    white-space: nowrap;
+    text-align: right;
+    padding: 0 10px;
+}
+
+

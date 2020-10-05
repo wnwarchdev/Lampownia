@@ -36,6 +36,10 @@ class Component extends React.Component {
     },
   };
 
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   changeInput = (event, name) => {
     event.preventDefault();
     const { order } = this.state;
@@ -74,6 +78,11 @@ class Component extends React.Component {
       product.quantity,
       product.price*product.quantity,
       product.id)) : [];
+
+    const count = productsInCart ? productsInCart.map(product => createData(
+      product.name)) : [];
+    console.log(count.name);
+
 
     const totalPrice = () => {
       let sum = [];

@@ -16,6 +16,7 @@ class Component extends React.Component {
     const {fetchProducts} = this.props;
     await fetchProducts();
     await this.props.products;
+    window.scrollTo(0, 0);
   }
 
   render() {

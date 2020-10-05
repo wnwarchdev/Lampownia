@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { getAll, fetchProducts } from '../../../redux/productsRedux';
-import { addToCart, addCartToLocal, getCart } from '../../../redux/cartRedux';
+import { addToCart, addCartToLocal, getCart, cartFromLocal } from '../../../redux/cartRedux';
 import { NavLink } from 'react-router-dom';
 
 import styles from './Product.module.scss';
@@ -33,12 +33,22 @@ class Component extends React.Component {
 
   async componentDidMount(){
     await this.props.fetchProducts();
+    this.props.cartFromLocal();
+    window.scrollTo(0, 0);
+    console.log(this.props.getCart.type);
   }
 
   render(){
-    const {products, addToCart} = this.props;
+    const {products, addToCart, getCart} = this.props;
     const {quantity} = this.state.data;
     const singleProduct = products.filter(product => product._id === this.props.match.params.id)[0];
+    // if (singleProduct) {
+    //   console.log('singleProduct: ', singleProduct._id);
+    //   console.log('cartItems: ', this.props.getCart.length);
+    //   let Cart = this.props.getCart;
+    //   console.log(Cart.length);
+    // } 
+
 
     const onChange = ( event ) => {
       event.preventDefault();
@@ -50,7 +60,7 @@ class Component extends React.Component {
 
     const sendToCart = async(singleProduct, quantity) => {
       const singleProductLite = {price: singleProduct.price, name: singleProduct.name, id: singleProduct.id, _id: singleProduct._id};
-      console.log(singleProductLite);
+      //console.log(singleProductLite);
       await addToCart(singleProductLite, quantity);
       this.props.addCartToLocal(singleProductLite, quantity);
     };
@@ -86,6 +96,9 @@ class Component extends React.Component {
                 className={styles.button}            
                 size="small" 
                 color="secondary"
+                component={NavLink}
+                exact
+                to={`${process.env.PUBLIC_URL}/cart`}
                 onClick={() => sendToCart( singleProduct, quantity )}>
                 DO KOSZYKA
               </Button>
@@ -167,17 +180,22 @@ Component.propTypes = {
   addToCart: PropTypes.func,
   fetchProducts: PropTypes.func,
   addCartToLocal: PropTypes.func,
+  cartFromLocal: PropTypes.func,
+  getCart: PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({
   products: getAll(state),
   getCart: getCart(state),
+  cartItems: getCart(state),
+  cart: state.getCart,
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchProducts: () => dispatch(fetchProducts()),
   addToCart: (productInformation, quantity) => dispatch(addToCart(productInformation, quantity)),
   addCartToLocal: (getSingleProduct, quantity) => dispatch(addCartToLocal(getSingleProduct, quantity)),
+  cartFromLocal: () => dispatch(cartFromLocal()),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

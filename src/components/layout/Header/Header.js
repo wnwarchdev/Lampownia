@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import { Logo } from '../../common/Logo/Logo';
 
 import styles from './Header.module.scss';
+import { CartCounter } from '../../common/CartCounter/CartCounter';
 
 const Component = () => (
   <header className={styles.root}>
@@ -16,7 +17,8 @@ const Component = () => (
         </Button> 
       </div>
       <div>
-        <Button className={styles.button} component={NavLink} to={`${process.env.PUBLIC_URL}/cart`} activeClassName='active'>KOSZYK</Button>
+        <CartCounter className={styles.button} component={NavLink} to={`${process.env.PUBLIC_URL}/cart`}/>
+
       </div>
     </div>
   </header>
