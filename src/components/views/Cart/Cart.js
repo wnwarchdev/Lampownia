@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom';
 
 import styles from './Cart.module.scss';
 
-import Paper from '@material-ui/core/Paper';
+//import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -19,7 +19,7 @@ import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
 
 function createData(name, price, quantity, total, _id) {
@@ -41,9 +41,9 @@ class Component extends React.Component {
 
   render(){
     const { cartItems, changeQuantity, clearCart} = this.props;
-    console.log('cartItems: ', this.props.cartItems);
-    console.log('props : ', this.props);
-    console.log('state : ', this.state);
+    // console.log('cartItems: ', this.props.cartItems);
+    // console.log('props : ', this.props);
+    // console.log('state : ', this.state);
     
   
     const rows = cartItems ? cartItems.map(product => createData(
@@ -54,9 +54,9 @@ class Component extends React.Component {
         ?
         product.price*product.quantity:product.price*0, product._id)) : [];
 
-    const rows2 = cartItems ? cartItems.map(product => createData(
-      product.name)) : [];
-    console.log(rows2);
+    // const rows2 = cartItems ? cartItems.map(product => createData(
+    //   product.name)) : [];
+    // console.log(rows2);
   
     const changeInput = (event, _id) => {
       event.preventDefault();
@@ -77,7 +77,7 @@ class Component extends React.Component {
     return(
       <div className={styles.root}>
         <h1 className={styles.center}>Koszyk</h1>
-        <TableContainer >
+        <TableContainer className={styles.tableContainer}>
           <Table  className={styles.table}>
             <TableHead>
               <TableRow className={styles.hideS}>
@@ -94,7 +94,7 @@ class Component extends React.Component {
                 <TableRow key={row.name} className={styles.stackXs}>
 
                   <TableCell className={styles.center}>
-                    <h4>{row.name}</h4>
+                    <strong>{row.name}</strong>
                   </TableCell>
 
                   <TableCell className={styles.center}>
@@ -121,11 +121,11 @@ class Component extends React.Component {
 
                 </TableRow>
               ))}
-              <TableRow footer key="total" className={styles.hideS}>
+              <TableRow key="total" className={styles.hideS}>
                 <TableCell className={styles.noBorder}></TableCell >
                 <TableCell className={styles.noBorder}></TableCell>
                 <TableCell className={styles.noBorder}></TableCell>
-                <TableCell className={styles.center}><h4>{totalPrice()}</h4></TableCell>
+                <TableCell className={styles.center}><strong>{totalPrice()}</strong></TableCell>
                 <TableCell className={styles.noBorder}></TableCell>
 
               </TableRow>

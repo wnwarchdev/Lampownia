@@ -8,7 +8,6 @@ import { getCart, sendOrder} from '../../../redux/cartRedux';
 import styles from './Order.module.scss';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -18,6 +17,13 @@ import TableRow from '@material-ui/core/TableRow';
 import TableContainer from '@material-ui/core/TableContainer';
 import { Redirect } from 'react-router';
 import { NavLink } from 'react-router-dom';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import MenuItem from '@material-ui/core/MenuItem';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormLabel from '@material-ui/core/FormLabel';
 
 function createData(name, price, quantity, total, id) {
   return { name, price, quantity, total, id };
@@ -33,6 +39,7 @@ class Component extends React.Component {
       city: '',
       postcode: '',
       message: '',
+      delivery: '100',
     },
   };
 
@@ -61,7 +68,7 @@ class Component extends React.Component {
       ((order.name && order.surname && order.email && order.adress && order.city && order.postcode) ? 
         await sendOrder({ order, productsInCart } 
         ) 
-        : alert('Add more data')
+        : await sendOrder({ order, productsInCart } )
       ) 
       : alert('Nothing to order');
   };
@@ -90,12 +97,20 @@ class Component extends React.Component {
       const total = sum.reduce((a, b) => a + b, 0);
       return total;
     };
+    console.log(this.state.order.delivery);
+
+    const translateDelivery = () => {
+      const deliState = this.state.order.delivery;
+      const deliCost = parseInt(deliState);
+      return deliCost;
+    };
 
     return (
 
       (rows.length !== 0) ? (
         <div className={styles.root}>
-          <h1 className={styles.center}>Zamówienie</h1>
+          <h1 className={styles.center}>Zamówienie: {totalPrice() + translateDelivery()} PLN</h1>
+          
 
           <div className={styles.order}>
             <TableContainer className={styles.grayed} >
@@ -112,7 +127,7 @@ class Component extends React.Component {
                   {rows.map((row) => (
                     <TableRow key={row.name}>
                       <TableCell className={styles.center}>
-                        <h4>{row.name}</h4>
+                        <strong>{row.name}</strong>
                       </TableCell>
                       <TableCell className={styles.center}>{row.price}</TableCell>
                       <TableCell className={styles.center}>{row.quantity}</TableCell>
@@ -120,19 +135,17 @@ class Component extends React.Component {
                     </TableRow>
                   ))}
                   <TableRow key="dostawa">
-                    <TableCell className={styles.center}>
-                      <h4>Dostawa</h4>
-                    </TableCell>
-                    <TableCell className={styles.center}>25</TableCell>
+                    <TableCell className={styles.center}><strong>Dostawa</strong></TableCell>
+                    <TableCell className={styles.center}>{translateDelivery()} </TableCell>
                     <TableCell className={styles.center}></TableCell>
-                    <TableCell className={styles.center}>25</TableCell>
+                    <TableCell className={styles.centerLast}><strong>{totalPrice() + translateDelivery()}</strong></TableCell>
                   </TableRow>
-                  <TableRow key="suma">
+                  {/* <TableRow key="suma">
                     <TableCell className={styles.center}></TableCell>
                     <TableCell className={styles.center}></TableCell>
                     <TableCell className={styles.center}></TableCell>
-                    <TableCell className={styles.center}><h4>{totalPrice() + 25}</h4></TableCell>
-                  </TableRow>
+                    <TableCell className={styles.center}><h4>{totalPrice() + translateDelivery()}</h4></TableCell>
+                  </TableRow> */}
                 </TableBody>
               </Table>
             </TableContainer>
@@ -152,6 +165,7 @@ class Component extends React.Component {
               />
             </div>
           </div>
+
 
 
           <Grid
@@ -230,6 +244,14 @@ class Component extends React.Component {
 
             </Grid>
           </Grid>
+
+          <FormControl className={styles.delivery}>
+            <RadioGroup className={styles.radioGroup} defaultValue='100' onChange={(e) => changeInput(e, 'delivery')}>
+              <FormControlLabel value='100' control={<Radio />} label="Kurier 48h" />
+              <FormControlLabel value='150'  control={<Radio />} label="Kurier 24h" />
+              <FormControlLabel value='0'  control={<Radio />} label="Odbiór osobisty" />
+            </RadioGroup>
+          </FormControl>
 
           <div className={styles.center}>
             <Button

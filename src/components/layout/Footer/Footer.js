@@ -13,9 +13,9 @@ const Component = () => {
   return(
     <footer className={styles.root}>
       <div className={styles.footerLinks}>
-        <Button className={styles.button} component={NavLink} to={`${process.env.PUBLIC_URL}/about`} activeClassName='active'>O NAS</Button>
-        <Button className={styles.button} component={NavLink} to={`${process.env.PUBLIC_URL}/faq`} activeClassName='active'>FAQ</Button>
-        <Button className={styles.button} href={`https://www.facebook.com`} activeClassName='active'>FACEBOOK</Button>
+        <Button className={styles.button} component={NavLink} to={`${process.env.PUBLIC_URL}/about`} >O NAS</Button>
+        <Button className={styles.button} component={NavLink} to={`${process.env.PUBLIC_URL}/faq`} >FAQ</Button>
+        <Button className={styles.button} href={`https://www.facebook.com`} >FACEBOOK</Button>
       </div>
       <div>
         <span className={styles.copyright}>© Lampownia 2020</span>

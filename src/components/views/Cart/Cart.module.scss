@@ -22,6 +22,10 @@
     color: $black;
 }
 
+.tableContainer{
+    overflow: hidden;
+}
+
 .buttonOrder {
     margin-top: 10px;
     height:50px;
@@ -74,11 +78,15 @@
     }
   }
 
+  .xmark:after {
+    transform: translateX(-30px);
+}
+
 
   @media only screen and (max-width: $break-xs) {
     .center,
     .short,
-    h4 {
+    strong {
         border-bottom:none;
         margin: 0 auto;
         padding: 10px;
@@ -103,6 +111,7 @@
     }
 
     .xmark:after {
-        bottom: 5px;
+        left: 30px;
+        bottom: -15px;
     }
   }

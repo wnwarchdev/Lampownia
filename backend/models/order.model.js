@@ -10,6 +10,7 @@ const orderSchema = new mongoose.Schema({
     city: { type: String, required: true },
     postcode: { type: String, required: true },
     message: { type: String },
+    delivery: { type: String },
   },
 });
 

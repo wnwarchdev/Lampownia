@@ -8,13 +8,13 @@ import { NavLink } from 'react-router-dom';
 
 import styles from './Product.module.scss';
 
-import Paper from '@material-ui/core/Paper';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
+// import Paper from '@material-ui/core/Paper';
+// import Card from '@material-ui/core/Card';
+// import CardActionArea from '@material-ui/core/CardActionArea';
+// import CardActions from '@material-ui/core/CardActions';
+// import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -35,11 +35,11 @@ class Component extends React.Component {
     await this.props.fetchProducts();
     this.props.cartFromLocal();
     window.scrollTo(0, 0);
-    console.log(this.props.getCart.type);
+    //console.log(this.props.getCart.type);
   }
 
   render(){
-    const {products, addToCart, getCart} = this.props;
+    const {products, addToCart} = this.props;
     const {quantity} = this.state.data;
     const singleProduct = products.filter(product => product._id === this.props.match.params.id)[0];
     // if (singleProduct) {
