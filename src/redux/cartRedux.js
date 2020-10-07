@@ -52,7 +52,7 @@ export const sendOrder = (order) => {
       .post(`${api.url}/${api.order}`, order)
       .then(res => {
         dispatch(addOrder(order));
-        console.log(order);
+        //console.log(order);
         localStorage.setItem(`cart`, JSON.stringify([]));
       })
       .catch(err => {
