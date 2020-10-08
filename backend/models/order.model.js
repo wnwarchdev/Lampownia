@@ -11,6 +11,8 @@ const orderSchema = new mongoose.Schema({
     postcode: { type: String, required: [true, 'Postcode missing'], match: [/\d{2}-\d{3}/, 'Postcode not valid'] }, 
     message: { type: String, maxlength: 200 },
     delivery: { type: String, required: [true, 'Delivery method missing'] },
+    orderId: { type: String, required: [true, 'Order ID missing'] },
+    timestamp: { type: String, required: [true, 'Timestamp missing'] },
   },
 });
 

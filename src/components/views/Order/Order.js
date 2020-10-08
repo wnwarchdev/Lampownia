@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { uuid } from 'uuidv4';
+
 import { connect } from 'react-redux';
 import { getAll } from '../../../redux/productsRedux';
 import { getCart, sendOrder} from '../../../redux/cartRedux';
@@ -37,6 +39,8 @@ class Component extends React.Component {
       postcode: '',
       message: '',
       delivery: '100',
+      orderId: uuid().slice(1,13),
+      timestamp: new Date(Date.now()).toString() ,
     },
   };
 
@@ -58,11 +62,13 @@ class Component extends React.Component {
   executeOrder = async () => {
     const { order } = this.state;
     const { sendOrder, productsInCart } = this.props;
+    console.log(order);
+    
     productsInCart ? 
       ((order.name && order.surname && order.email && order.adress && order.city && order.postcode) ? 
         await sendOrder({ order, productsInCart } 
         ) 
-        : await sendOrder({ order, productsInCart } )
+        : alert('Proszę wypełnić wszystkie pola')
       ) 
       : alert('Nothing to order');
   };
