@@ -9,7 +9,7 @@ const orderSchema = new mongoose.Schema({
     adress: { type: String, required: [true, 'Adress missing'] },
     city: { type: String, required: [true, 'City missing'] },
     postcode: { type: String, required: [true, 'Postcode missing'], match: [/\d{2}-\d{3}/, 'Postcode not valid'] }, 
-    message: { type: String },
+    message: { type: String, maxlength: 200 },
     delivery: { type: String, required: [true, 'Delivery method missing'] },
   },
 });

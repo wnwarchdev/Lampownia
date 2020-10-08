@@ -17,13 +17,10 @@ import TableRow from '@material-ui/core/TableRow';
 import TableContainer from '@material-ui/core/TableContainer';
 import { Redirect } from 'react-router';
 import { NavLink } from 'react-router-dom';
-import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
-import MenuItem from '@material-ui/core/MenuItem';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
 
 function createData(name, price, quantity, total, id) {
   return { name, price, quantity, total, id };
@@ -50,15 +47,12 @@ class Component extends React.Component {
   changeInput = (event, name) => {
     event.preventDefault();
     const { order } = this.state;
-
     this.setState({ order: { ...order, [name]: event.target.value } });
   };
 
-  charCounter(event) {
-    let input = event.target.value;
-    this.setState({
-      charactersLeft: 50 - input.length,
-    });
+  charCounter(input) {
+    let charLeft = 200 -input.length;
+    return charLeft;
   }
 
   executeOrder = async () => {
@@ -76,7 +70,7 @@ class Component extends React.Component {
   render() {
 
     const { productsInCart} = this.props;
-    const { changeInput, executeOrder} = this;
+    const { changeInput, executeOrder, charCounter} = this;
     const { order } = this.state;
 
     const rows = productsInCart ? productsInCart.map(product => createData(
@@ -86,10 +80,6 @@ class Component extends React.Component {
       product.price*product.quantity,
       product.id)) : [];
 
-    const count = productsInCart ? productsInCart.map(product => createData(
-      product.name)) : [];
-    console.log(count.name);
-
 
     const totalPrice = () => {
       let sum = [];
@@ -97,7 +87,7 @@ class Component extends React.Component {
       const total = sum.reduce((a, b) => a + b, 0);
       return total;
     };
-    console.log(this.state.order.delivery);
+
 
     const translateDelivery = () => {
       const deliState = this.state.order.delivery;
@@ -138,14 +128,8 @@ class Component extends React.Component {
                     <TableCell className={styles.center}><strong>Dostawa</strong></TableCell>
                     <TableCell className={styles.center}>{translateDelivery()} </TableCell>
                     <TableCell className={styles.center}></TableCell>
-                    <TableCell className={styles.centerLast}><strong>{totalPrice() + translateDelivery()}</strong></TableCell>
+                    <TableCell className={styles.center}><strong>{totalPrice() + translateDelivery()}</strong></TableCell>
                   </TableRow>
-                  {/* <TableRow key="suma">
-                    <TableCell className={styles.center}></TableCell>
-                    <TableCell className={styles.center}></TableCell>
-                    <TableCell className={styles.center}></TableCell>
-                    <TableCell className={styles.center}><h4>{totalPrice() + translateDelivery()}</h4></TableCell>
-                  </TableRow> */}
                 </TableBody>
               </Table>
             </TableContainer>
@@ -160,9 +144,11 @@ class Component extends React.Component {
                 square={true}
                 multiline
                 fullWidth
+                inputProps={{ maxLength: 200}}
                 value={order.message}
                 onChange={(e) => changeInput(e, 'message')}
               />
+              <p className={styles.charCounter}>Pozostało znaków: {charCounter(order.message)}</p>
             </div>
           </div>
 
