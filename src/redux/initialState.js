@@ -3,7 +3,7 @@ export const initialState = {
     data: [
     ],
     loading: {
-      active: false,
+      active: true,
       error: false,
     },
   },
