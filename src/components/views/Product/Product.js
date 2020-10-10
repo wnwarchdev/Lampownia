@@ -8,13 +8,7 @@ import { NavLink } from 'react-router-dom';
 
 import styles from './Product.module.scss';
 
-// import Paper from '@material-ui/core/Paper';
-// import Card from '@material-ui/core/Card';
-// import CardActionArea from '@material-ui/core/CardActionArea';
-// import CardActions from '@material-ui/core/CardActions';
-// import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-// import Typography from '@material-ui/core/Typography';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -35,19 +29,12 @@ class Component extends React.Component {
     await this.props.fetchProducts();
     this.props.cartFromLocal();
     window.scrollTo(0, 0);
-    //console.log(this.props.getCart.type);
   }
 
   render(){
     const {products, addToCart} = this.props;
     const {quantity} = this.state.data;
     const singleProduct = products.filter(product => product._id === this.props.match.params.id)[0];
-    // if (singleProduct) {
-    //   console.log('singleProduct: ', singleProduct._id);
-    //   console.log('cartItems: ', this.props.getCart.length);
-    //   let Cart = this.props.getCart;
-    //   console.log(Cart.length);
-    // } 
 
 
     const onChange = ( event ) => {
@@ -60,7 +47,6 @@ class Component extends React.Component {
 
     const sendToCart = async(singleProduct, quantity) => {
       const singleProductLite = {price: singleProduct.price, name: singleProduct.name, id: singleProduct.id, _id: singleProduct._id};
-      //console.log(singleProductLite);
       await addToCart(singleProductLite, quantity);
       this.props.addCartToLocal(singleProductLite, quantity);
     };
@@ -113,7 +99,7 @@ class Component extends React.Component {
           <Carousel showIndicators={false} showThumbs={false} autoPlay infiniteLoop interval='2000' className={styles.tileCarousel}>
             {singleProduct.gallery && singleProduct.gallery.map((item, i) => (
               <div key={i} >
-                <img src={`/img/Products/${singleProduct.name}/${item}.jpg`} className={styles.image} alt={`IMG ${i + 1} of ${singleProduct.name}`} />
+                <img src={`/img/Products/${singleProduct.name}/${item}.jpf`} className={styles.image} alt={`IMG ${i + 1} of ${singleProduct.name}`} />
               </div>
             ))}
           </Carousel>
@@ -122,7 +108,7 @@ class Component extends React.Component {
           
           {singleProduct.gallery && singleProduct.gallery.map((item, i) => (
             <div key={i} className={styles.tileGallery}>
-              <img src={`/img/Products/${singleProduct.name}/${item}.jpg`} className={styles.image} alt={`IMG ${i + 1} of ${singleProduct.name}`} />
+              <img src={`/img/Products/${singleProduct.name}/${item}.jpf`} className={styles.image} alt={`IMG ${i + 1} of ${singleProduct.name}`} />
             </div>
           ))}
           
