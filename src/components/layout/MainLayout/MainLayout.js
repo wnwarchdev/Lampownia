@@ -20,7 +20,7 @@ const Component = ({children}) => (
     </AppBar>
 
     <Container maxWidth="lg" className={styles.main}>
-      <a name="top"></a>
+      <a href="!#" name="top"> </a>
       <Toolbar/>
       <Container className={styles.content}>
         {children}

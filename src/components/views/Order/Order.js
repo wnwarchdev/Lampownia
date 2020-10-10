@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { uuid } from 'uuidv4';
+import { v4 } from 'uuid';
 
 import { connect } from 'react-redux';
 import { getAll } from '../../../redux/productsRedux';
@@ -39,7 +39,7 @@ class Component extends React.Component {
       postcode: '',
       message: '',
       delivery: '100',
-      orderId: uuid().slice(1,13),
+      orderId: v4().slice(1,13),
       timestamp: new Date(Date.now()).toString() ,
     },
   };
@@ -147,7 +147,6 @@ class Component extends React.Component {
                 name="message"
                 label="Wiadomość"
                 className={styles.noBorder}
-                square={true}
                 multiline
                 fullWidth
                 inputProps={{ maxLength: 200}}
