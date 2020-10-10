@@ -9,7 +9,7 @@ const Component = ({ product }) => {
   return (
     <Link to={`${process.env.PUBLIC_URL}/products/${_id}`} className={styles.root}>
       <div className={styles.card}>
-        <img src={`/img/Products/${name}/${image}.jpf`} alt={`IMG of ${name}`} className={styles.image} />
+        <img src={`/img/Products/${name}/${image}.jpg`} alt={`IMG of ${name}`} className={styles.image} />
         <h2 className={styles.name}>{name}</h2>
         <p className={styles.price}>{`${price} PLN`}</p>
       </div>

@@ -99,7 +99,7 @@ class Component extends React.Component {
           <Carousel showIndicators={false} showThumbs={false} autoPlay infiniteLoop interval='2000' className={styles.tileCarousel}>
             {singleProduct.gallery && singleProduct.gallery.map((item, i) => (
               <div key={i} >
-                <img src={`/img/Products/${singleProduct.name}/${item}.jpf`} className={styles.image} alt={`IMG ${i + 1} of ${singleProduct.name}`} />
+                <img src={`/img/Products/${singleProduct.name}/${item}.jpg`} className={styles.image} alt={`IMG ${i + 1} of ${singleProduct.name}`} />
               </div>
             ))}
           </Carousel>
@@ -108,7 +108,7 @@ class Component extends React.Component {
           
           {singleProduct.gallery && singleProduct.gallery.map((item, i) => (
             <div key={i} className={styles.tileGallery}>
-              <img src={`/img/Products/${singleProduct.name}/${item}.jpf`} className={styles.image} alt={`IMG ${i + 1} of ${singleProduct.name}`} />
+              <img src={`/img/Products/${singleProduct.name}/${item}.jpg`} className={styles.image} alt={`IMG ${i + 1} of ${singleProduct.name}`} />
             </div>
           ))}
           
