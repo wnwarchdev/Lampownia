@@ -116,11 +116,11 @@ class Component extends React.Component {
           <div className={styles.tile}>
 
             <div className={styles.text}>
-              <h3>{singleProduct.name}</h3>
-              <h5>Kategoria: lampa {singleProduct.category}</h5>
-              <h5>Średnica: {singleProduct.dim.diameter} mm</h5>
-              <h5>Wysokość: {singleProduct.dim.height} mm</h5>
-              <h5>Waga: {singleProduct.dim.weight} kg</h5>
+              <h4>{singleProduct.name}</h4>
+              <h4>Kategoria: lampa {singleProduct.category}</h4>
+              <h4>Średnica: {singleProduct.dim.diameter} mm</h4>
+              <h4>Wysokość: {singleProduct.dim.height} mm</h4>
+              <h4>Waga: {singleProduct.dim.weight} kg</h4>
 
 
 
