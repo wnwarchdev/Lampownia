@@ -96,7 +96,7 @@ class Component extends React.Component {
 
 
 
-          <Carousel showIndicators={false} showThumbs={false} autoPlay infiniteLoop interval='2000' className={styles.tileCarousel}>
+          <Carousel showIndicators={false} showThumbs={false} showStatus={false} autoPlay infiniteLoop interval='2000' className={styles.tileCarousel}>
             {singleProduct.gallery && singleProduct.gallery.map((item, i) => (
               <div key={i} >
                 <img src={`/img/Products/${singleProduct.name}/${item}.jpg`} className={styles.image} alt={`IMG ${i + 1} of ${singleProduct.name}`} />
