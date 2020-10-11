@@ -14,7 +14,7 @@ const Component = () => {
     <footer className={styles.root}>
       <div className={styles.footerLinks}>
         <Button className={styles.button} component={NavLink} to={`${process.env.PUBLIC_URL}/about`} >O NAS</Button>
-        <Button className={styles.button} component={NavLink} to={`${process.env.PUBLIC_URL}/faq`} >FAQ</Button>
+        <Button className={styles.button} disabled component={NavLink} to={`${process.env.PUBLIC_URL}/faq`} >FAQ</Button> 
         <Button className={styles.button} href={`https://www.facebook.com`} >FACEBOOK</Button>
       </div>
       <div>

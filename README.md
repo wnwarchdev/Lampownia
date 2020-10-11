@@ -8,6 +8,7 @@
 ## Download
 
 Run `yarn install` to install the project locally.
+Use `yarn start` to open in localhost.
 
 
 [visit page](https://lampownia.herokuapp.com/)

@@ -7,7 +7,9 @@ import YouTubeIcon from '@material-ui/icons/YouTube';
 
 import styles from './About.module.scss';
 
+
 const Component = ({className}) => (
+  
   <div className={styles.root}>
     <div className={styles.container}>
       <h1 className={styles.headerS}>lampownia</h1>
@@ -18,6 +20,7 @@ const Component = ({className}) => (
         </div>
       </div>
       <h2>O NAS</h2>
+      
       <p>
         Nie produkujemy naszych lamp - znajdujemy je. Każdy z nich ma do powiedzenia swoją historię.... a właściwie dwie: o swoim oryginalnym przeznaczniu na przestrzeni lat XX wieku, oraz historię odrestaurowania i przysposobienia do ponownego użycia. Praca, którą wykonujemy w naszej pracowni opiera się na poszanowaniu i zachowaniu dziedzictwa każdego pojedynczego przedmiotu.<br/><br/>
         Mamy trzy zasady przewodnie:<br/>
@@ -25,11 +28,9 @@ const Component = ({className}) => (
           <li>Uratować najlepsze oświetlenie przemysłowe XX wieku.<br/></li>
           <li>Przywrócić do życia każdy element z wyczuciem jego historii- bez uszczerbku dla jego charakteru.<br/></li>
           <li>Odnowić każdą oprawę aby spełniała najwyższe nowoczesne standardy użytkowania.<br/></li>
-        </ul>
-        
-        
-        
+        </ul>       
       </p>
+
       <h2>POZNAJMY SIĘ!</h2>
       <p>Wysyłamy nasze lampy do zadowolonych klientów w całym kraju. Jeśli masz pytanie dotyczące któregokolwiek z naszych produktów lub szukasz czegoś konkretnego, zawsze chętnie pomożemy. Czekamy na Ciebie w naszym studiu w Katowicach po wcześniejszym umówieniu się w godzinach 9:00-17:00 od poniedziałku do piątku.</p>
       <p>Skontaktuj się z nami:</p>
@@ -60,8 +61,10 @@ const Component = ({className}) => (
         Powrót
       </Button>
     </div>
+    <script>{window.scrollTo(0, 0)}</script>
   </div>
 );
+
 
 Component.propTypes = {
   className: PropTypes.string,
