@@ -34,6 +34,7 @@
 .splash {
     position: relative;
     height: 40vh;
+    width:100%;
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
@@ -48,7 +49,7 @@
 .logo {
     position: absolute;
     display: inline-block;
-    transform: scale(6);
+    transform: scale(5);
     margin-bottom: 7px;
     left:50%;
     top:50%;
@@ -109,6 +110,25 @@ ul {
         color: $black;
     }
 }
+
+.headerS{
+    display:none;
+    font-family: $font-header;
+    text-align: center;
+    font-style: italic;
+    font-size: $base-size * 3.5;
+
+}
+
+
+@media only screen and (max-width: $break-s) {
+    .splash {
+        display:none;
+    }
+    .headerS{
+        display: block;
+    }
+  }
 
 
   

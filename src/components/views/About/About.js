@@ -10,6 +10,7 @@ import styles from './About.module.scss';
 const Component = ({className}) => (
   <div className={styles.root}>
     <div className={styles.container}>
+      <h1 className={styles.headerS}>lampownia</h1>
       <div className={styles.splash}>
         <div className={styles.logo}>
           <div className={styles.halfTop}></div>
