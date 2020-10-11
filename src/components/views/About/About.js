@@ -43,10 +43,10 @@ const Component = ({className}) => (
         </a>
       </address>
       <div className={styles.socialLinks}>
-        <a href="facebook.com">
+        <a href="https://facebook.com">
           <FacebookIcon className={styles.icon}/>
         </a>
-        <a  href="youtube.com">
+        <a  href="https://youtube.com">
           <YouTubeIcon className={styles.icon}/>
         </a>
       </div>

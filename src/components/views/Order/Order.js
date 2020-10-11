@@ -62,7 +62,6 @@ class Component extends React.Component {
   executeOrder = async () => {
     const { order } = this.state;
     const { sendOrder, productsInCart } = this.props;
-    console.log(order);
     
     productsInCart ? 
       ((order.name && order.surname && order.email && order.adress && order.city && order.postcode) ? 
