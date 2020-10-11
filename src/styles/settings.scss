@@ -1,18 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,400;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,400;1,700&display=swap');
 
 $white: #fff;
 $black: #2d2926;
-
+$orange: #e9972b;
+$gray: #e0e0e0;
 
 $base-size: 12px; 
 
-$color-text: $black;
-$color-background: $white;
-
-
 $font-header: "Roboto", sans-serif;
-$font-text: "Roboto", sans-serif;
-
+$font-text: "Merriweather", sans-serif;
+$font-control: "Roboto", sans-serif;
 
 $break-xl: 1210px;
 $break-lg: 1010px;

@@ -11,7 +11,7 @@ const Component = ({ product }) => {
       <div className={styles.card}>
         <img src={`/img/Products/${name}/${image}.jpg`} alt={`IMG of ${name}`} className={styles.image} />
         <h2 className={styles.name}>{name}</h2>
-        <p className={styles.price}>{`${price} PLN`}</p>
+        <strong className={styles.price}>{`${price} PLN`}</strong>
       </div>
     </Link>
   );

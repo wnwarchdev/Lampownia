@@ -1,8 +1,18 @@
+@import "normalize.scss";
 @import "settings.scss"; 
+
 
 
 body {
     overflow-y: scroll;
+    font-family: $font-control;
+}
+
+p,
+h4,
+h5,
+h6 {
+    font-family: $font-text;
 }
 
 

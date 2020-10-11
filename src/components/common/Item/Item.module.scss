@@ -30,15 +30,14 @@
 .name {
     position: absolute;
     left:15px;
-    color:white;
-    font-family: $font-text;
+    color:$white;
 }
 
 .price {
     position: absolute;
     right:15px;
     bottom:15px;
-    color:white;
+    color: $white;
     text-transform: uppercase;
 }
 

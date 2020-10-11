@@ -10,20 +10,15 @@
     text-align: center;
 }
 
-.centerLast{
- //   border-top: 2px solid  $black;
-}
-
 .charCounter{
-    color:gray;
     position: absolute;
     bottom:2px;
+    font-family: $font-control;
 }
 
 .grayed{
-    background-color: rgba(224, 224, 224, 1);
+    background-color: $gray;
     border: 2px solid $black;
-
 }
 
 .noBorder{
@@ -48,7 +43,7 @@
     border-radius: 0px;
     color: $white;
     &:hover {
-        background-color:orange;
+        background-color:$orange;
 
     }
 }

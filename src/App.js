@@ -25,6 +25,11 @@ const theme = createMuiTheme({
       default: '#fff',
     },
   },
+  typography: {
+    fontFamily: [
+      '$font-control',
+    ],
+  },
 
 });
 
