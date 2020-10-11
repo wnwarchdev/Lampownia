@@ -1,5 +1,9 @@
 @import "../../../styles/settings.scss";
 
+.root {
+  margin-top:80px;
+}
+
 .loading {
   border: 16px solid $white;
   border-top: 16px solid $black;
